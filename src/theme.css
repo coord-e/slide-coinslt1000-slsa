@@ -1,0 +1,76 @@
+/* @theme coord-e-com */
+
+@import "default";
+
+section {
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  background-color: #f1f1f1;
+}
+
+section.lead > h1 {
+  font-size: 2em;
+}
+
+h1 {
+  color: #000;
+}
+
+a {
+  color: #00b894;
+}
+
+a > code {
+  background-color: transparent;
+  padding: 0;
+}
+
+ul > li::marker {
+  content: "-";
+}
+
+li::marker {
+  font-family: "Overpass Mono", monospace;
+  color: #b3bec3;
+}
+
+li {
+  padding-left: 0.4em;
+}
+
+pre {
+  border: none;
+  background-color: #2d3436;
+  color: #fff;
+}
+
+pre,
+code {
+  font-family: "Overpass Mono", monospace;
+  border-radius: 0;
+}
+
+.hljs-title,
+.hljs-keyword {
+  color: #a29bfe;
+}
+
+.hljs-type {
+  color: #81ecec;
+}
+
+.hljs-string {
+  color: #74b9ff;
+}
+
+.hljs-comment {
+  color: #b2bec3;
+}
+
+.hljs-number {
+  color: #74b9ff;
+}
+
+table th,
+table td {
+  padding: 12px 20px;
+}

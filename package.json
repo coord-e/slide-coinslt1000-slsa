@@ -1,0 +1,46 @@
+{
+  "name": "slide-coinslt1000-slsa",
+  "version": "1.0.0",
+  "description": "5 分で SLSA",
+  "scripts": {
+    "lint:textlint": "textlint src/main.md",
+    "lint:prettier": "prettier --check src/",
+    "lint": "run-p lint:*",
+    "fix:textlint": "textlint --fix src/main.md",
+    "fix:prettier": "prettier --write src/",
+    "fix": "run-s fix:prettier fix:textlint",
+    "build:html": "marp --theme src/theme.css src/main.md -o dist/index.html",
+    "build:pdf": "marp --theme src/theme.css src/main.md -o dist/slide.pdf",
+    "build": "run-p build:*",
+    "start": "marp --theme src/theme.css --server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coord-e/slide-coinslt1000-slsa.git"
+  },
+  "author": "coord_e",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coord-e/slide-coinslt1000-slsa/issues"
+  },
+  "homepage": "https://github.com/coord-e/slide-coinslt1000-slsa#readme",
+  "dependencies": {
+    "@marp-team/marp-cli": "^3.2.1",
+    "@textlint-ja/textlint-rule-no-dropping-i": "^2.0.1",
+    "@textlint-ja/textlint-rule-no-insert-dropping-sa": "^2.0.1",
+    "@textlint-rule/textlint-rule-no-invalid-control-character": "^2.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.0.3",
+    "sudachi-synonyms-dictionary": "^9.0.0",
+    "textlint": "^13.3.3",
+    "textlint-filter-rule-allowlist": "^4.0.0",
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-rule-ja-no-inappropriate-words": "^2.0.0",
+    "textlint-rule-no-mixed-zenkaku-and-hankaku-alphabet": "^1.0.1",
+    "textlint-rule-prefer-tari-tari": "^1.0.3",
+    "textlint-rule-preset-ja-engineering-paper": "^1.0.3",
+    "textlint-rule-preset-ja-spacing": "^2.2.0",
+    "textlint-rule-preset-ja-technical-writing": "^8.0.0",
+    "textlint-rule-terminology": "^3.0.5"
+  }
+}

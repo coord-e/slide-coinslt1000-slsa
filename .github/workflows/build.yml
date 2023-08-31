@@ -1,0 +1,48 @@
+on:
+  push:
+
+permissions: read-all
+
+jobs:
+  build-builder:
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+      packages: write
+    uses: ./.github/workflows/build_builder.yml
+    with:
+      image: ghcr.io/coord-e/slide-coinslt1000-slsa-builder
+  build:
+    needs:
+      - build-builder
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v1.9.0
+    with:
+      builder-image: ghcr.io/coord-e/slide-coinslt1000-slsa-builder
+      builder-digest: ${{ needs.build-builder.outputs.digest }}
+      config-path: "ci/buildconfig.toml"
+      rekor-log-public: true
+      upload-assets: false
+  release:
+    needs:
+      - build
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.build.outputs.build-outputs-name }}
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.build.outputs.attestations-download-name }}
+          path: dist
+      - run: gh release upload "$GITHUB_REF_NAME" dist/*
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}

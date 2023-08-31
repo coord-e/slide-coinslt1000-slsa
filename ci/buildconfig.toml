@@ -1,0 +1,3 @@
+# for SLSA container-based builder; see .github/workflows/build.yml
+artifact_path = "dist/*"
+command = ["npm", "run", "build"]
